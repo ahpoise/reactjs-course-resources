@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 01 — HTML + CSS demo</title>
+    <!-- Liga o ficheiro CSS externo (capítulo: como ligar CSS a HTML) -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- <header> e <main> são tags semânticas (capítulo: HTML, em síntese) -->
+    <header class="page-header">
+      <!-- "page-header" é uma class: pode aparecer em vários elementos -->
+      <p class="eyebrow">Sessão 01 · HTML + CSS demo</p>
+      <h1>Utilizadores ativos</h1>
+
+      <!-- id="count" é único na página: gancho para CSS e (mais tarde) para JS -->
+      <p><strong id="count">3</strong> <span>utilizadores ativos</span></p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Controlos</h2>
+
+        <!-- "controls" é a class para o CSS de layout do bloco -->
+        <div class="controls">
+          <!-- Os ids ficam aqui prontos para o JS ligar event listeners depois -->
+          <button id="btn-sort-name" type="button">Ordenar por nome</button>
+          <button id="btn-sort-age" type="button">Ordenar por idade</button>
+
+          <!-- <label for="..."> liga o texto ao input pelo id (capítulo: HTML) -->
+          <label for="filter-tag">Filtrar por tag</label>
+          <select id="filter-tag">
+            <option value="">todas</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Lista</h2>
+
+        <!-- id="list" é o sítio onde, na próxima demo, o JS vai injetar <li>s -->
+        <!-- Por agora, três <li> hardcoded para mostrar o look final -->
+        <ul id="list" class="user-list">
+          <li class="user">Ana (28)</li>
+          <li class="user">Carlos (42)</li>
+          <li class="user">Diana (31)</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
