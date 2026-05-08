@@ -1,6 +1,6 @@
 # Sessão 01 · JS demo
 
-Estende o exemplo de [html-css-demo](../html-css-demo) com a camada de JS coberta na revisão. A página é a mesma; o que muda é que agora os `<li>`, o counter, a ordenação e o filtro são todos conduzidos por código, não hardcoded.
+Playground com os tópicos de JavaScript essenciais para o resto do curso. Cada ficheiro `0X-….js` cobre **um** tópico, com `console.log` em vez de UI. Não há _app_ a correr; o foco é a consola.
 
 ## Como correr
 
@@ -9,35 +9,30 @@ cd session-01/js-demo
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-Abre [http://127.0.0.1:8080](http://127.0.0.1:8080). Não precisas de toolchain: o `<script type="module">` carrega o `app.js`, que importa os dados de `users.js`.
+Abre [http://127.0.0.1:8080](http://127.0.0.1:8080) e a consola do _browser_ (DevTools → Console). O `index.html` tem um `<script type="module">` por tópico; só **um** está descomentado de cada vez. Para mudar de tópico, edita o HTML, descomenta o ficheiro que queres correr, comenta o anterior, recarrega.
 
 > **Importante.** Tem de ser servido por HTTP. Abrir `index.html` direto do disco (`file://`) não corre módulos ES (`import` falha por CORS).
 
-## O que observar
+## Ficheiros, em ordem pedagógica
 
-- Counter no topo arranca a `3` (escrito por JS, não pelo HTML).
-- Cada `<li>` é construído com _template literal_ + _optional chaining_: `${name} (${age}) · ${tags?.[0] ?? "sem tag"}`.
-- "Ordenar por nome" e "Ordenar por idade" reordenam a lista; o counter mantém-se sincronizado porque a sua atualização vive dentro de `render()`.
-- O `<select>` é populado em runtime com as _tags_ únicas extraídas via `flatMap` + `Set`. Escolher uma _tag_ filtra por essa _tag_; "todas" repõe a lista completa.
-- O `Bruno` (inativo) nunca aparece: `users.filter((u) => u.active)` está sempre na cadeia.
+| #  | Ficheiro                       | O que cobre                                                                |
+| -- | ------------------------------ | -------------------------------------------------------------------------- |
+| 01 | `01-variables.js`              | `var` / `let` / `const`, _function vs block scope_, _hoisting_, TDZ        |
+| 02 | `02-functions.js`              | _Declarations_ vs _expressions_ vs _arrow_, default + rest parameters      |
+| 03 | `03-loops.js`                  | `for`, `while`, `for...of`, `for...in`, `.forEach` (e quando usar `.map`)  |
+| 04 | `04-modern-syntax.js`          | Template literals, `?.`, `??`, _ternary_, `&&` / `\|\|` _short-circuit_       |
+| 05 | `05-equality.js`               | `===` vs `==`, _falsy_ / _truthy_                                          |
+| 06 | `06-closures.js`               | `createCounter`, _closures_ em loops com `let` vs `var`                    |
+| 07 | `07-destructuring-spread.js`   | _Destructuring_ (objeto / _array_ / _rename_ / _default_ / _rest_) + _spread_ |
+| 08 | `08-array-methods.js`          | `.filter`, `.map`, `.reduce`, `.find` + _mutation caveat_ (`[...arr].sort()`) |
+| 09 | `09-modules.js`                | `import` / `export`, _named_ vs _default_                                  |
 
-## Tópicos cobertos no código
+`users.js` exporta os dados partilhados (4 utilizadores com `active` + `tags`); só `08` e `09` o importam.
 
-| Tópico da revisão                      | Onde vive na demo                                                     |
-| -------------------------------------- | --------------------------------------------------------------------- |
-| Sintaxe moderna · arrow functions      | Todos os _callbacks_ em `app.js`                                      |
-| Sintaxe moderna · template literals    | `${name} (${age})` no texto do `<li>`                                 |
-| Sintaxe moderna · optional chaining    | `tags?.[0]` ao ler a primeira _tag_                                   |
-| Sintaxe moderna · ternary              | `tag ? users.filter(...) : users.filter(...)` no _handler_ do filtro  |
-| Sintaxe moderna · short-circuit `&&`   | Snippet comentado no rodapé do `app.js`                               |
-| Closures                               | `createCounter` no rodapé "Outros tópicos do guião"                   |
-| `===` vs `==` + falsy                  | Snippet comentado no rodapé                                           |
-| Array methods (`.filter`, `.map`, `.flatMap`) | _Pipeline_ de render e construção do `<select>` de _tags_      |
-| _Array_ mutation _caveat_              | `[...active].sort(...)` nos _handlers_ de ordenação                   |
-| Modules (`import` / `export`)          | `users.js` exporta; `app.js` importa                                  |
-| Destructuring                          | `const { name, age, tags } = user;` dentro do _loop_ de render        |
-| Spread                                 | `[...active]`, `[...new Set(...)]`                                    |
+## O que esperar na consola
+
+Cada ficheiro começa com `console.log("── 0X · <tópico> ──")` para ser fácil de localizar o início. Lê o código de cima a baixo enquanto vais saltando linhas na consola — comentários explicam o porquê de cada linha.
 
 ## Próximo passo
 
-Em React, este `render(list)` desaparece: descreves a UI como uma função do _state_, e a sincronização do counter acontece de graça. A próxima sessão é onde isso começa.
+Na próxima sessão deixamos de mexer no DOM à mão; entra Vite + React e o primeiro componente.

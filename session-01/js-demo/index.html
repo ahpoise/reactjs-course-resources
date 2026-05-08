@@ -3,46 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sessão 01 — JS demo</title>
-    <!-- Liga o ficheiro CSS externo (capítulo: como ligar CSS a HTML) -->
+    <title>Sessão 01 - JS demo</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <!-- <header> e <main> são tags semânticas (capítulo: HTML, em síntese) -->
-    <header class="page-header">
-      <p class="eyebrow">Sessão 01 · JS demo</p>
-      <h1>Utilizadores ativos</h1>
+    <h1>Sessão 01 - JS demo</h1>
+    <p>
+      Cada ficheiro abaixo cobre um tópico de JS. Abre a consola do
+      <em>browser</em> (DevTools, Console) e faz uncomment ao
+      <code>&lt;script&gt;</code> do tópico que queres correr.
+    </p>
+    <p>Os outros ficam comentados para não poluir o <em>output</em>.</p>
 
-      <!-- id="count" é único na página: agora é o JS que escreve o número -->
-      <p><strong id="count">0</strong> <span>utilizadores ativos</span></p>
-    </header>
-
-    <main>
-      <section class="panel">
-        <h2>Controlos</h2>
-
-        <div class="controls">
-          <!-- Os ids servem de gancho para o app.js ligar event listeners (capítulo: HTML id selector) -->
-          <button id="btn-sort-name" type="button">Ordenar por nome</button>
-          <button id="btn-sort-age" type="button">Ordenar por idade</button>
-
-          <label for="filter-tag">Filtrar por tag</label>
-          <select id="filter-tag">
-            <!-- O JS popula as restantes options a partir das tags em users.js -->
-            <option value="">todas</option>
-          </select>
-        </div>
-      </section>
-
-      <section class="panel">
-        <h2>Lista</h2>
-
-        <!-- id="list" é o sítio onde o app.js injeta os <li>s (capítulo: array methods + DOM) -->
-        <ul id="list" class="user-list"></ul>
-      </section>
-    </main>
-
-    <!-- type="module" obriga: sem ele, o `import` em app.js falha (capítulo: modules) -->
-    <script type="module" src="./app.js"></script>
+    <!-- Descomenta APENAS UM script de cada vez. -->
+    <script type="module" src="./01-variables.js"></script>
+    <script type="module" src="./02-functions.js"></script>
+    <script type="module" src="./03-loops.js"></script>
+    <script type="module" src="./04-modern-syntax.js"></script>
+    <script type="module" src="./05-equality.js"></script>
+    <script type="module" src="./06-closures.js"></script>
+    <script type="module" src="./07-destructuring-spread.js"></script>
+    <script type="module" src="./08-array-methods.js"></script>
+    <script type="module" src="./09-modules.js"></script>
   </body>
 </html>

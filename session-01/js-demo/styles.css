@@ -1,64 +1,25 @@
-/* ─────────────────────────────────────────────────────────────────────────
-   Recap dos três selectors da review:
-   - type selector  (h1)       → aplica a todos os elementos desse tipo
-   - class selector (.panel)   → aplica a todos os elementos com essa class
-   - id selector    (#count)   → aplica ao único elemento com esse id
-   ───────────────────────────────────────────────────────────────────────── */
-
-/* type selector: aplica a TODOS os <body> da página */
 body {
   margin: 0;
+  padding: 24px;
   background: #f6f7f9;
   color: #17202a;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
 }
 
-/* type selector composto: aplica a todos os <h1>, <h2> e <p> */
-h1,
-h2,
+h1 {
+  margin: 0 0 12px;
+}
+
 p {
-  margin-top: 0;
+  margin: 0;
+  max-width: 60ch;
 }
 
-/* class selector: aplica a todos os elementos com class="page-header" */
-.page-header {
-  background: #ffffff;
-  border-bottom: 1px solid #d9dee7;
-  padding: 24px;
-}
-
-/* class selector */
-.eyebrow {
-  color: #526071;
-  font-size: 14px;
-  margin: 0 0 8px;
-}
-
-/* class selector — "panel" repete-se em vários <section> */
-.panel {
+code {
   background: #ffffff;
   border: 1px solid #d9dee7;
-  padding: 16px;
-  margin: 16px 24px;
-}
-
-/* class selector usada no <div> dentro de cada panel */
-.controls {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-/* class selector — aplica a <ul class="user-list"> */
-.user-list {
-  margin: 0;
-  padding-left: 20px;
-}
-
-/* id selector — único na página; estiliza o número grande do counter */
-#count {
-  font-size: 20px;
-  color: #ca2127;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
 }
