@@ -3,6 +3,10 @@ import { users, tags } from "./users.js";
 function App() {
   const active = users.filter((u) => u.active);
 
+  const handleOrderByAge = () => {
+    console.log("ordenar por idade");
+  };
+
   return (
     <>
       <header>
@@ -12,7 +16,7 @@ function App() {
         <button type="button" onClick={() => console.log("ordenar por nome")}>
           ordenar por nome
         </button>
-        <button type="button" onClick={() => console.log("ordenar por idade")}>
+        <button type="button" onClick={handleOrderByAge}>
           ordenar por idade
         </button>
         <label htmlFor="filter-tag">Filtrar por tag</label>
@@ -30,13 +34,11 @@ function App() {
       </header>
       <main>
         <ul>
-          {active.map((user) => {
-            return (
-              <li key={user.id}>
-                {user.name} ({user.age})
-              </li>
-            );
-          })}
+          {active.map((user) => (
+            <li key={user.id}>
+              {user.name} ({user.age})
+            </li>
+          ))}
         </ul>
       </main>
     </>

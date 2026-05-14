@@ -19,11 +19,15 @@ document.getElementById("count").textContent = active.length;
 document.getElementById("btn-sort-name").addEventListener("click", () => {
   active = [...active].sort((a, b) => a.name.localeCompare(b.name));
   render(active);
+
+  document.getElementById("count").textContent = active.length;
 });
 
 document.getElementById("btn-sort-age").addEventListener("click", () => {
   active = [...active].sort((a, b) => a.age - b.age);
   render(active);
+
+  document.getElementById("count").textContent = active.length;
 });
 
 const select = document.getElementById("filter-tag");
@@ -40,4 +44,6 @@ select.addEventListener("change", (e) => {
     .filter((u) => u.active)
     .filter((u) => !tag || u.tags.includes(tag));
   render(active);
+
+  document.getElementById("count").textContent = active.length;
 });

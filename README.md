@@ -10,3 +10,5 @@ Recursos práticos usados ao longo do curso. Cada pasta representa material de a
   - [`session-01/cfu-why-react-demo`](./session-01/cfu-why-react-demo/)
 - **Sessão 02**
   - [`session-02/cfu-first-vite-app`](./session-02/cfu-first-vite-app/)
+- **Sessão 03**
+  - [`session-03/cfu-components-props`](./session-03/cfu-components-props/)
