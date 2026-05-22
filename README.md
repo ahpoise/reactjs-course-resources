@@ -16,5 +16,7 @@ Recursos práticos usados ao longo do curso. Cada pasta representa material de a
   - [`session-04/cfu-state-hooks-events`](./session-04/cfu-state-hooks-events/)
 - **Sessão 05**
   - [`session-05/cfu-conditional-review`](./session-05/cfu-conditional-review/)
+- **Sessão 06**
+  - [`session-06/routing`](./session-06/routing/)
 - **Exercícios — Unit 1**
   - [`exercises/unit-01/profile-page`](./exercises/unit-01/profile-page/)

@@ -1,0 +1,11 @@
+# Routing - Sessão 6
+
+## O que muda em relação à Sessão 5
+
+1. **`react-router@^7.14.2` instalado e `<BrowserRouter>` no _entry point_.** Em `src/main.jsx`, envolvemos `<App />` num `<BrowserRouter>` importado de `"react-router"` (sem o sufixo `-dom`, package renomeado em v7).
+2. **`src/pages/` introduzido como _convention_.** Quatro páginas: `Home.jsx` (landing), `UsersList.jsx`, `UserDetail.jsx` e `NotFound.jsx`. `<App>` deixa de ter lógica de domínio: passa a ser um _shell_ com `<NavBar />` + `<Routes>`.
+3. **Lista de utilizadores extraída para `<UsersList>`.** A página guarda apenas `sortBy` e `selectedTag` no _state_ local. Desapareceram do `<App>`: o filtro `active = users.filter(u => u.active)`, o _counter_ "X de Y", o `<h1>Utilizadores ativos:...</h1>`, o `<p>Selecionado:...</p>`, o `useEffect(document.title)`, o _grid_ de 2 colunas e os _wrappers_ `<Section>`.
+4. **Página de detalhe por URL com `useParams()`.** `<UserDetail>` (em `pages/`) lê `userId` do URL via `useParams()`, faz `users.find((u) => String(u.id) === userId)` e devolve um 404 inline (`<p>404, utilizador não encontrado.</p>`) se não houver _match_. O componente `components/UserDetail.jsx` da Sessão 5 (com `onClear`) é apagado: o "Limpar seleção" passa a ser um `<Link to="/users">← Voltar à lista</Link>`.
+5. **`<UserCard>` reduzido a `({ user })` e envolvido em `<Link>`.** As _props_ `avatar`, `onSelect` e `selected` desaparecem; o _card_ passa a ser `<Link to={\`/users/${user.id}\`}>`. Resultado: o URL guarda a selecção, o _state_ `selectedUser`/`setSelectedUser` é apagado de toda a aplicação e a partilha por _link_ funciona _out of the box_.
+6. **`<NavBar>` com `<NavLink>`.** Dois _links_ persistentes (`/` e `/users`) que destacam a rota activa via callback `({ isActive }) => className`. O `<NavLink to="/">` leva `end` para só destacar na _home_ exacta (sem `end` ficaria activo em qualquer rota que comece por `/`). Renderizado uma vez em `<App>`, fora de `<Routes>`.
+7. **404 _catch-all_ com `useNavigate()`.** `<Route path="*" element={<NotFound />} />` apanha qualquer URL não correspondido; a página tem um `<button>` que chama `navigate("/")` programaticamente (alternativa a `<Link>` quando o destino depende de lógica).
