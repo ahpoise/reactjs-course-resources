@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 01 · CFU Porquê React (end)</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Utilizadores ativos: <span id="count">0</span></h1>
+      <button id="btn-sort-name" type="button">ordenar por nome</button>
+      <button id="btn-sort-age" type="button">ordenar por idade</button>
+      <label for="filter-tag">Filtrar por tag</label>
+      <select id="filter-tag">
+        <option value="">todas</option>
+      </select>
+    </header>
+    <main>
+      <ul id="list"></ul>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
