@@ -45,18 +45,18 @@ O `<UserForm>` é o único com _state_ local, tudo o resto deriva da chamada em 
 
 ```mermaid
 sequenceDiagram
-    actor User as Utilizador
-    participant Form as "&lt;UserForm&gt;"
-    participant New as "&lt;UserNew&gt;"
-    participant App as "&lt;App&gt;"
-    participant List as "&lt;UsersList&gt;"
+    actor Utilizador
+    participant UserForm
+    participant UserNew
+    participant App
+    participant UsersList
 
-    User->>Form: escreve campos + clica "Guardar"
-    Form->>Form: handleSubmit: preventDefault<br/>+ Number(form.age)
-    Form->>New: onSubmit({name, age, tags})
-    New->>App: onAdd(user)
+    Utilizador->>UserForm: escreve campos + clica Guardar
+    UserForm->>UserForm: handleSubmit: preventDefault + Number(form.age)
+    UserForm->>UserNew: onSubmit({name, age, tags})
+    UserNew->>App: onAdd(user)
     App->>App: setUsers([...users, {id: Date.now(), ...user}])
-    Note over New: navigate("/users")
-    App->>List: re-render com users (novo)
-    List->>User: vê o utilizador novo
+    Note over UserNew: navigate /users
+    App->>UsersList: re-render com users novo
+    UsersList->>Utilizador: vê o utilizador novo
 ```
