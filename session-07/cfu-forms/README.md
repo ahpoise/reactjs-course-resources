@@ -11,8 +11,8 @@
 
 ## Estrutura da app
 
-Componentes da app no estado final da sessão.
-Setas com etiqueta indicam as _props_ que cada parent passa ao child.
+Componentes da app no estado final da sessão. \
+Setas com etiqueta indicam as _props_ que cada parent passa ao child. \
 `<App>` é o dona do _state_ (`users`) e dos _handlers_ que o mutam (`addUser`, `updateUser`, `deleteUser`).
 
 ```mermaid
@@ -40,16 +40,16 @@ flowchart TB
 
 ## Fluxo: criar um novo utilizador
 
-O caminho desde o clique em "Guardar" no `<UserForm>` até o utilizador aparecer na lista.
+O caminho desde o clique em "Guardar" no `<UserForm>` até o utilizador aparecer na lista. \
 O `<UserForm>` é o único com _state_ local, tudo o resto deriva da chamada em cadeia que sobe até ao `setUsers` no `<App>`.
 
 ```mermaid
 sequenceDiagram
     actor User as Utilizador
-    participant Form as &lt;UserForm&gt;
-    participant New as &lt;UserNew&gt;
-    participant App as &lt;App&gt;
-    participant List as &lt;UsersList&gt;
+    participant Form as "&lt;UserForm&gt;"
+    participant New as "&lt;UserNew&gt;"
+    participant App as "&lt;App&gt;"
+    participant List as "&lt;UsersList&gt;"
 
     User->>Form: escreve campos + clica "Guardar"
     Form->>Form: handleSubmit: preventDefault<br/>+ Number(form.age)
