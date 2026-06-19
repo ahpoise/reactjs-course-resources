@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./cartSlice.js";
+import usersReducer from "./usersSlice.js";
 
-// A chave "cart" é o nome da fatia no state global: lês com state.cart.
+// configureStore junta os reducers numa só store e liga o Redux DevTools
+// e o middleware por default.
 export const store = configureStore({
-  reducer: { cart: cartReducer },
+  reducer: { users: usersReducer },
 });
