@@ -18,5 +18,13 @@ Recursos práticos usados ao longo do curso. Cada pasta representa material de a
   - [`session-05/cfu-conditional-review`](./session-05/cfu-conditional-review/)
 - **Sessão 06**
   - [`session-06/routing`](./session-06/routing/)
+- **Sessão 07**
+  - [`session-07/cfu-forms`](./session-07/cfu-forms/)
+- **Sessão 08**
+  - [`session-08/cfu-zod`](./session-08/cfu-zod/)
+- **Sessão 09**
+  - [`session-09/cfu-context-usereducer`](./session-09/cfu-context-usereducer/)
+- **Sessão 10**
+  - [`session-10/cfu-redux-toolkit`](./session-10/cfu-redux-toolkit/)
 - **Exercícios — Unit 1**
   - [`exercises/unit-01/profile-page`](./exercises/unit-01/profile-page/)

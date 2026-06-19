@@ -1,25 +1,25 @@
-# State partilhado com Context + useReducer - Sessão 9
+# State global com Redux Toolkit - Sessão 10
 
-## O que muda em relação à Sessão 8
+## O que muda em relação à Sessão 9
 
-1. **`src/state/usersReducer.js`**: as três funções soltas de `<App>` (`addUser`, `updateUser`, `deleteUser`) passam a três `case` num _reducer_ `(state, action) => novoState`. Cada `case` devolve uma _array_ nova (spread, `map`, `filter`); o `default` faz `throw` para apanhar `type`s mal escritos. O `id` é gerado por quem faz o `dispatch`; o _reducer_ só calcula o _state_ seguinte.
-2. **`src/state/UsersContext.jsx`**: `createContext(null)`; o `useReducer` é utilizado dentro do `<UsersProvider>`, que passa `{ users, dispatch }` no `value`. O _custom hook_ `useUsers()` centraliza o _check_ de `null` com mensagem de erro clara.
-3. **`src/main.jsx`**: `<UsersProvider>` envolve a árvore (por fora do `<BrowserRouter>`, a mesma convenção do `<Provider>` Redux da Sessão 10).
-4. **Páginas migradas**: `<UsersList>` lê de `useUsers()`; `<UserDetail>` faz `dispatch` de `deleted`; `<UserEdit>` de `updated`; `<UserNew>` de `added`, com `id: Date.now()` gerado no `dispatch`. O `selectedTag`/`sortBy` da lista ficam em `useState` local (UI local da página).
-5. **`src/App.jsx`**: zero _state_, zero _handlers_, _routes_ sem _props_ de dados. Só `<NavBar />` + `<Routes>`.
+1. **`src/store/usersSlice.js`**: o `usersReducer` da Sessão 9 passa a `createSlice` (`name: "users"`, `initialState` = os utilizadores _seed_, _reducers_ `added`/`updated`/`deleted`). Dentro da _slice_ podemos "mutar" (`state.push`, atribuição por índice) **ou** devolver uma _array_ nova (`filter`), nunca os dois no mesmo _reducer_; Redux Toolkit trata da imutabilidade. Os _action creators_ (`added`/`updated`/`deleted`) são gerados a partir dos nomes dos _reducers_.
+2. **`src/store/index.js`**: `configureStore({ reducer: { users: usersReducer } })`. A _key_ `users` define que o _state_ é `{ users: [...] }`, lido com `state.users`.
+3. **`src/main.jsx`**: `<Provider store={store}>` (de `react-redux`) substitui o `<UsersProvider>`, no mesmo sítio (por fora do `<BrowserRouter>`).
+4. **Páginas migradas**: `useUsers()` passa a `useSelector((state) => state.users)` + `useDispatch()`; `dispatch({ type: "added", user })` passa a `dispatch(added(user))` (idem `updated`/`deleted`). No `<UserEdit>`, o parâmetro do `handleSubmit` passa a chamar-se `values` para não colidir com o _action creator_ `updated`. O `selectedTag`/`sortBy` da lista ficam em `useState` local (UI local da página).
+5. **Context removido**: `src/state/UsersContext.jsx` e `usersReducer.js` são apagados; o _state_ dos utilizadores vive agora na _store_ Redux.
 
-O `<UserForm>` e a validação Zod da Sessão 8 não mudaram; só mudou o destino do `result.data` (de uma _prop_ `onAdd` para um `dispatch`).
+O `<UserForm>`, a validação Zod e o `src/App.jsx` não mudaram: as _routes_ já não passavam _props_ de dados desde a Sessão 9.
 
 ## Estrutura da app
 
 Componentes no estado final da sessão. \
 Setas a cheio = composição (quem renderiza quem), com as _props_ que restam nas etiquetas. \
-Linhas a tracejado, sem seta = acesso ao _state_ partilhado via `useUsers()`, sem passar por _props_. \
-Compara com o diagrama da Sessão 7: as _routes_ deixaram de passar _props_ de dados; quem guarda os `users` agora é o `<UsersProvider>`.
+Linhas a tracejado, sem seta = acesso à _store_ via `useSelector`/`useDispatch`, sem passar por _props_. \
+Compara com o diagrama da Sessão 9: o `<UsersProvider>` deu lugar ao `<Provider store={store}>`; quem guarda os `users` agora é a _store_ Redux.
 
 ```mermaid
 flowchart TB
-    UsersProvider["<b>&lt;UsersProvider&gt;</b><br/><i>useReducer(usersReducer)</i><br/>value = { users, dispatch }"]
+    Provider["<b>&lt;Provider store={store}&gt;</b><br/><i>configureStore</i><br/>users: usersSlice"]
     App["&lt;App&gt;<br/>zero state, zero handlers"]
     NavBar["&lt;NavBar&gt;"]
     Routes["&lt;Routes&gt;"]
@@ -30,7 +30,7 @@ flowchart TB
     UserForm["&lt;UserForm&gt;<br/><i>useState(form, errors, touched)</i>"]
     UserCard["&lt;UserCard&gt;"]
 
-    UsersProvider --> App
+    Provider --> App
     App --> NavBar
     App --> Routes
     Routes --> UsersList
@@ -41,8 +41,8 @@ flowchart TB
     UserNew -- "onSubmit" --> UserForm
     UserEdit -- "onSubmit, initial" --> UserForm
 
-    UsersList -. "useUsers(): users" .- UsersProvider
-    UserDetail -. "useUsers(): users, dispatch" .- UsersProvider
-    UserEdit -. "useUsers(): users, dispatch" .- UsersProvider
-    UserNew -. "useUsers(): dispatch" .- UsersProvider
+    UsersList -. "useSelector: users" .- Provider
+    UserDetail -. "useSelector / dispatch: deleted" .- Provider
+    UserEdit -. "useSelector / dispatch: updated" .- Provider
+    UserNew -. "dispatch: added" .- Provider
 ```
