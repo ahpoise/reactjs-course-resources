@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { users } from "../users.js";
 
-// O usersReducer da s9 vira um slice: o nome "users" passa a ser a fatia
+// O usersReducer da s9 passa a ser uma slice: o nome "users" passa a ser a fatia
 // no state global e cada reducer gera o seu action creator automaticamente.
 const usersSlice = createSlice({
   name: "users",
@@ -21,8 +21,6 @@ const usersSlice = createSlice({
     },
   },
 });
-
-console.log(usersSlice);
 
 export const { added, updated, deleted } = usersSlice.actions;
 export default usersSlice.reducer;
