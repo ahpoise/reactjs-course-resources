@@ -26,5 +26,13 @@ Recursos práticos usados ao longo do curso. Cada pasta representa material de a
   - [`session-09/cfu-context-usereducer`](./session-09/cfu-context-usereducer/)
 - **Sessão 10**
   - [`session-10/cfu-redux-toolkit`](./session-10/cfu-redux-toolkit/)
+- **Sessão 11**
+  - [`session-11/cfu-axios-escape-hatches`](./session-11/cfu-axios-escape-hatches/)
+- **Sessão 12**
+  - [`session-12/cfu-expense-tracker`](./session-12/cfu-expense-tracker/)
+  - [`session-12/crm-typescript`](./session-12/crm-typescript/)
 - **Exercícios — Unit 1**
   - [`exercises/unit-01/profile-page`](./exercises/unit-01/profile-page/)
+- **Exercícios — Unit 2**
+  - [`exercises/unit-02/watchlist-starter`](./exercises/unit-02/watchlist-starter/)
+  - [`exercises/unit-02/watchlist-end`](./exercises/unit-02/watchlist-end/)
